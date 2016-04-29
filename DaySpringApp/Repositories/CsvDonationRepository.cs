@@ -25,7 +25,8 @@ namespace DaySpringApp.Repositories
     
     public IEnumerable<Donation> GetDonations(int year, int month = 0)
     {
-      return _donationData.Where(c => c.DonationDate.Year == year && (month == 0 || c.DonationDate.Month == month));
+      if (year == 0) month = 0;
+      return _donationData.Where(c => (year == 0 || c.DonationDate.Year == year) && (month == 0 || c.DonationDate.Month == month));
     }
 
     public void AddDonation(Donation donationData)

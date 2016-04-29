@@ -20,7 +20,7 @@ namespace DaySpringApp.Controllers
       _donationRepository = donationRepository;
     }
 
-    public HttpResponseMessage Get(int year, int month = 0)
+    public HttpResponseMessage Get(int year = 0, int month = 0)
     {
       var donations = _donationRepository.GetDonations(year, month);
       return Request.CreateResponse(HttpStatusCode.OK, donations);
