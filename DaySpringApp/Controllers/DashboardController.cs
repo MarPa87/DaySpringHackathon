@@ -5,30 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DaySpringApp.Abstracts;
+using DaySpringApp.Repositories;
 
 namespace DaySpringApp.Controllers
 {
-    public class DashboardController : Controller
-    {
-        private DaySpringDbEntities db = new DaySpringDbEntities();
+  //public class DashboardController : Controller
+  //{
+  //  private readonly IDonationRepository _donationRepository = new MockDonationRepository();
 
-        // GET: Dashboard
-        [ChildActionOnly]
-        public ActionResult DonationByYear(int year)
-        {
-            var donations = db.Donations.Where(e => e.DonationDate.Year == year)
-                                             .ToList()
-                                             .GroupBy(e => e.DonationDate.Month)
-                                             .OrderBy(e => e.Key)
-                                             .Select(e => new DonationByYearModels()
-                                             {
-                                                 Month = e.First().DonationDate.Month,
-                                                 MonthName = e.First().DonationDate.ToString("MMM"),
-                                                 Total = e.Sum(f => f.Amount)
-                                             })
-                                             .ToArray();
-
-            return PartialView("_DonationByYear", donations);
-        }
-    }
+  //  // GET: Dashboard
+  //  [ChildActionOnly]
+  //  public ActionResult DonationByYear(int year)
+  //  {
+  //    var donations = _donationRepository.GetDonations(year);
+  //    return PartialView("_DonationByYear", donations);
+  //  }
+  //}
 }

@@ -179,6 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\IDonationRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -192,35 +193,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IrasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataLayer\Currency.cs">
-      <DependentUpon>DaySpringDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\DaySpringDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DaySpringDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\DaySpringDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DaySpringDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\DaySpringDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DaySpringDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\Donation.cs">
-      <DependentUpon>DaySpringDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\Donor.cs">
-      <DependentUpon>DaySpringDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\IdentificationType.cs">
-      <DependentUpon>DaySpringDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\UserCode\Donation.cs" />
-    <Compile Include="DataLayer\UserCode\Donor.cs" />
+    <Compile Include="DataLayer\Donation.cs" />
+    <Compile Include="DataLayer\IdType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +209,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MockDonationRepository.cs" />
     <Compile Include="Results\ZipResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -246,16 +221,6 @@
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\gridmvc.datepicker.css" />
     <Content Include="Content\gridmvc.datepicker.min.css" />
-    <Content Include="DataLayer\DaySpringDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DaySpringDataModel.edmx</DependentUpon>
-      <LastGenOutput>DaySpringDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataLayer\DaySpringDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DaySpringDataModel.edmx</DependentUpon>
-      <LastGenOutput>DaySpringDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -271,13 +236,6 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DataLayer\DaySpringDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DaySpringDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataLayer\DaySpringDataModel.edmx.diagram">
-      <DependentUpon>DaySpringDataModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Grid.mvc.readme" />
     <None Include="Scripts\jquery-1.12.3.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
