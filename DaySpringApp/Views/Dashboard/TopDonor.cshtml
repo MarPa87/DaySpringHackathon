@@ -16,10 +16,11 @@
                                     "<td>" + response[i].IdNumber + "</td>" +
                                       "<td>" + response[i].Email + "</td>" +
                                       "<td>" + response[i].Phone + "</td>" +
+                                      "<td>" + response[i].TotalDonationAmount + "</td>" +
                                 "</tr>";
                     }
 
-                    $("#inactiveDonationContent").append(
+                    $("#topDonorContent").append(
                         "<table class='table table-striped grid-table'>" +
                         "<thead>" +
                             "<tr>" +
@@ -27,6 +28,7 @@
                                 "<th>NRIC</th>" +
                                 "<th>Email Address</th>" +
                                 "<th>Contact No.</th>" +
+                                "<th>Amount</th>" +
                             "</tr>" +
                         "</thead>" +
                         "<tbody>" +
@@ -60,5 +62,5 @@
     </select>
 </div>
 <button id="btnDownload" type="submit" class="btn btn-default">Download</button>
-<div id="inactiveDonorContent">
+<div id="topDonorContent">
 </div>
