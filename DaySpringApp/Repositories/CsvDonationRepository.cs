@@ -40,6 +40,12 @@ namespace DaySpringApp.Repositories
       SaveToFile();
     }
 
+    public void ClearAll()
+    {
+      _donationData.Clear();
+      SaveToFile();
+    }
+
     private void SaveToFile()
     {
       System.IO.File.WriteAllText(_donationFileName, JsonConvert.SerializeObject(_donationData));

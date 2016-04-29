@@ -209,6 +209,7 @@
     <Compile Include="App_Start\StructuremapWebApi.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IrasController.cs" />
@@ -237,7 +238,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CsvDonationRepository.cs" />
-    <Compile Include="Repositories\MockDonationRepository.cs" />
     <Compile Include="Results\ZipResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +303,7 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Iras\Index.cshtml" />
+    <Content Include="Views\Detail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
