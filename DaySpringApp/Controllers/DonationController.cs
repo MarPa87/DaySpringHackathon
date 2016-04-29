@@ -35,6 +35,11 @@ namespace DaySpringApp.Controllers
         : Request.CreateResponse(HttpStatusCode.Created);
     }
 
+    /// <summary>
+    /// TODO: Check for field max length
+    /// </summary>
+    /// <param name="donation"></param>
+    /// <returns></returns>
     private List<string> ValidateDonation(Donation donation)
     {
       var errorMessages = new List<string>();
@@ -69,6 +74,7 @@ namespace DaySpringApp.Controllers
 
     private bool IsValidIdNumber(IdType type, string number)
     {
+      if (number.Length > 12) return false;
       //Todo: Implement algorithm to check validity
       return true;
     }
