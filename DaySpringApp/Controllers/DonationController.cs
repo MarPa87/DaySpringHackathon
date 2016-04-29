@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DaySpringApp.Abstracts;
@@ -9,7 +10,13 @@ namespace DaySpringApp.Controllers
 {
   public class DonationController : ApiController
   {
-    private readonly IDonationRepository _donationRepository = new MockDonationRepository();
+    private readonly IDonationRepository _donationRepository;
+
+    public DonationController(IDonationRepository donationRepository)
+    {
+      if (donationRepository == null) throw new ArgumentNullException(nameof(donationRepository));
+      _donationRepository = donationRepository;
+    }
 
     public HttpResponseMessage Get(int year, int month = 0)
     {
