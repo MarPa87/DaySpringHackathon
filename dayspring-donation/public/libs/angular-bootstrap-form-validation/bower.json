@@ -1,0 +1,26 @@
+{
+  "name": "angular-bootstrap-form-validation",
+  "version": "0.9.7",
+  "homepage": "https://github.com/assisrafael/angular-bootstrap-form-validation",
+  "authors": [
+    "Igor Rafael <igor.rafael@gmail.com>"
+  ],
+  "main": "form-validation.js",
+  "keywords": [
+    "angular",
+    "boostrap",
+    "form",
+    "validation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2"
+  }
+}

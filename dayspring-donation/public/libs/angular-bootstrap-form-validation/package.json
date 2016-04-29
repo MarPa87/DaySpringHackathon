@@ -1,0 +1,22 @@
+{
+  "name": "angular-bootstrap-form-validation",
+  "version": "0.9.7",
+  "description": "Distribution repo for [angular-bootstrap-form-validation](https://github.com/assisrafael/angular-bootstrap-form-validation). Please file issues and pull requests against that repo.",
+  "main": "form-validation.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/assisrafael/bower-angular-bootstrap-form-validation.git"
+  },
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "form",
+    "validation"
+  ],
+  "author": "Igor Rafael <igor.rafael@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/assisrafael/angular-bootstrap-form-validation/issues"
+  },
+  "homepage": "https://github.com/assisrafael/angular-bootstrap-form-validation"
+}
