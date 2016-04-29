@@ -15,7 +15,12 @@ namespace DaySpringApp.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            return View("Index");
+            return View();
+        }
+
+        public ActionResult InactiveDonor()
+        {
+            return View();
         }
     }
 }
