@@ -290,7 +290,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Iras\Export.cshtml" />
-    <Content Include="Views\Dashboard\_DonationByYear.cshtml" />
+    <Content Include="Views\Dashboard\_Donation.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Donor\Create.cshtml" />
