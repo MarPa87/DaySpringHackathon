@@ -11,10 +11,11 @@
                     var rows = "";
                     for (var i = 0; i < response.length; i++) {
                         rows += "<tr>" +
-                                    "<td>" + response[i].FirstName + response[i].LastName + "</td>" +
+                                    "<td>" + response[i].FirstName + " " + response[i].LastName + "</td>" +
                                     "<td>" + response[i].IdNumber + "</td>" +
-                                      "<td>" + response[i].Email + "</td>" +
-                                      "<td>" + response[i].Phone + "</td>" +
+                                    "<td>" + response[i].Email + "</td>" +
+                                    "<td>" + response[i].Phone + "</td>" +
+                                    "<td>" + response[i].LastDonationDate.toString('dd-MMM-yyyy') + "</td>" +
                                 "</tr>";
                     }
 
@@ -26,6 +27,7 @@
                                 "<th>NRIC</th>" +
                                 "<th>Email Address</th>" +
                                 "<th>Contact No.</th>" +
+                                "<th>Last Donation Date</th>" +
                             "</tr>" +
                         "</thead>" +
                         "<tbody>" +
