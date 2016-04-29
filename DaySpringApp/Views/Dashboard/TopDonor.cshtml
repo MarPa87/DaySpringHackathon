@@ -4,11 +4,11 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $("btnDownload").on("click", function (e) {
-            var year = $("cbxYear").val();
+        $("#btnDownload").on("click", function (e) {
+            var year = $("#cbxYear").val();
             var topN = $("#cbxTopN").val();
-            if (year && numMonths) {
-                $.ajax("http://172.22.119.132:8080/api/analysis/donors/top?year=" + year + "&num=" + topN, function (response) {
+            if (year && topN) {
+                $.get("http://172.22.119.132:8080/api/analysis/donors/top?year=" + year + "&num=" + topN, "", function (response) {
                     var rows = "";
                     for (var i = 0; i < response.length; i++) {
                         rows += "<tr>" +
@@ -16,10 +16,11 @@
                                     "<td>" + response[i].IdNumber + "</td>" +
                                       "<td>" + response[i].Email + "</td>" +
                                       "<td>" + response[i].Phone + "</td>" +
+                                      "<td>" + response[i].TotalDonationAmount + "</td>" +
                                 "</tr>";
                     }
 
-                    $("#inactiveDonationContent").append(
+                    $("#topDonorContent").append(
                         "<table class='table table-striped grid-table'>" +
                         "<thead>" +
                             "<tr>" +
@@ -27,6 +28,7 @@
                                 "<th>NRIC</th>" +
                                 "<th>Email Address</th>" +
                                 "<th>Contact No.</th>" +
+                                "<th>Amount</th>" +
                             "</tr>" +
                         "</thead>" +
                         "<tbody>" +
@@ -60,5 +62,5 @@
     </select>
 </div>
 <button id="btnDownload" type="submit" class="btn btn-default">Download</button>
-<div id="inactiveDonorContent">
+<div id="topDonorContent">
 </div>

@@ -32,7 +32,13 @@
                 @Html.ActionLink("Details", "Index", "Detail", new { area = "" }, new { @class = "navbar-brand" })
               </li>
               <li class="page-scroll">
-                @Html.ActionLink("Reports", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Inactive Donor", "InactiveDonor", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Top Donor", "TopDonor", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
               </li>
               <li class="page-scroll">
                 @Html.ActionLink("IRAS Export", "Index", "Iras", new { area = "" }, new { @class = "navbar-brand" })
