@@ -4,11 +4,11 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $("btnDownload").on("click", function (e) {
-            var year = $("cbxYear").val();
+        $("#btnDownload").on("click", function (e) {
+            var year = $("#cbxYear").val();
             var topN = $("#cbxTopN").val();
-            if (year && numMonths) {
-                $.ajax("http://172.22.119.132:8080/api/analysis/donors/top?year=" + year + "&num=" + topN, function (response) {
+            if (year && topN) {
+                $.get("http://172.22.119.132:8080/api/analysis/donors/top?year=" + year + "&num=" + topN, "", function (response) {
                     var rows = "";
                     for (var i = 0; i < response.length; i++) {
                         rows += "<tr>" +
