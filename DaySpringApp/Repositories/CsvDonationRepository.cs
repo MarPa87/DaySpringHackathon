@@ -34,6 +34,12 @@ namespace DaySpringApp.Repositories
       SaveToFile();
     }
 
+    public void BulkAddDonation(IEnumerable<Donation> donations)
+    {
+      _donationData.AddRange(donations);
+      SaveToFile();
+    }
+
     private void SaveToFile()
     {
       System.IO.File.WriteAllText(_donationFileName, JsonConvert.SerializeObject(_donationData));
