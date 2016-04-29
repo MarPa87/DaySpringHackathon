@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DaySpringApp.DataLayer.Donation>
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<DaySpringApp.DataLayer.Donation>
 
 <!DOCTYPE html>
 
@@ -16,25 +17,25 @@
       <form method="get" action="@Url.Action("Index")" class="form-inline" role="form">
         <div class="form-group">
           <select class="form-control" name="year" id="cbxYear">
-            <option>2016</option>
-            <option>2015</option>
-            <option>2014</option>
+            <option @Html.Raw(ViewBag.year == 2016 ? "selected='selected'" : "")>2016</option>
+            <option @Html.Raw(ViewBag.year == 2015 ? "selected='selected'" : "")>2015</option>
+            <option @Html.Raw(ViewBag.year == 2014 ? "selected='selected'" : "")>2014</option>
           </select>
         </div>
         <div class="form-group">
           <select class="form-control" name="month" id="cbxMonth">
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
+            <option value="1" @Html.Raw(ViewBag.month == 1 ? "selected='selected'" : "")>January</option>
+            <option value="2" @Html.Raw(ViewBag.month == 2 ? "selected='selected'" : "")>February</option>
+            <option value="3" @Html.Raw(ViewBag.month == 3 ? "selected='selected'" : "")>March</option>
+            <option value="4" @Html.Raw(ViewBag.month == 4 ? "selected='selected'" : "")>April</option>
+            <option value="5" @Html.Raw(ViewBag.month == 5 ? "selected='selected'" : "")>May</option>
+            <option value="6" @Html.Raw(ViewBag.month == 6 ? "selected='selected'" : "")>June</option>
+            <option value="7" @Html.Raw(ViewBag.month == 7 ? "selected='selected'" : "")>July</option>
+            <option value="8" @Html.Raw(ViewBag.month == 8 ? "selected='selected'" : "")>August</option>
+            <option value="9" @Html.Raw(ViewBag.month == 9 ? "selected='selected'" : "")>September</option>
+            <option value="10" @Html.Raw(ViewBag.month == 10 ? "selected='selected'" : "")>October</option>
+            <option value="11" @Html.Raw(ViewBag.month == 11 ? "selected='selected'" : "")>November</option>
+            <option value="12" @Html.Raw(ViewBag.month == 12 ? "selected='selected'" : "")>December</option>
           </select>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
