@@ -12,16 +12,10 @@ namespace DaySpringApp.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly IDonationRepository _donationRepository = new MockDonationRepository();
-
         // GET: Dashboard
-        [ChildActionOnly]
-        public ActionResult Donation(int year)
+        public ActionResult Index()
         {
-            //var donations = _donationRepository.GetDonations(year);
-            //return PartialView("_DonationByYear", donations);
-            ViewBag.Year = year;
-            return PartialView("_Donation");
+            return View("Index");
         }
     }
 }
