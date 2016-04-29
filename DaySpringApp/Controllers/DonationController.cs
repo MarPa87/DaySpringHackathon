@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DaySpringApp.Abstracts;
@@ -9,7 +12,13 @@ namespace DaySpringApp.Controllers
 {
   public class DonationController : ApiController
   {
-    private readonly IDonationRepository _donationRepository = new MockDonationRepository();
+    private readonly IDonationRepository _donationRepository;
+
+    public DonationController(IDonationRepository donationRepository)
+    {
+      if (donationRepository == null) throw new ArgumentNullException(nameof(donationRepository));
+      _donationRepository = donationRepository;
+    }
 
     public HttpResponseMessage Get(int year, int month = 0)
     {
@@ -20,7 +29,48 @@ namespace DaySpringApp.Controllers
     public HttpResponseMessage Post(Donation donation)
     {
       _donationRepository.AddDonation(donation);
-      return Request.CreateResponse(donation);
+      var validationError = ValidateDonation(donation);
+      return validationError.Any()
+        ? Request.CreateResponse(HttpStatusCode.BadRequest, validationError)
+        : Request.CreateResponse(HttpStatusCode.Created);
+    }
+
+    private List<string> ValidateDonation(Donation donation)
+    {
+      var errorMessages = new List<string>();
+      if (donation == null)
+      {
+        errorMessages.Add("Donation data is missing");
+        return errorMessages;
+      }
+
+      if (!IsValidIdNumber(donation.IdType, donation.IdNumber))
+      {
+        errorMessages.Add("ID number is invalid");
+      }
+
+      if (string.IsNullOrWhiteSpace(donation.FirstName) || string.IsNullOrWhiteSpace(donation.LastName))
+      {
+        errorMessages.Add("First and last name must be specified");
+      }
+
+      if (string.IsNullOrWhiteSpace(donation.Email))
+      {
+        errorMessages.Add("Email address must be specified");
+      }
+
+      if(string.IsNullOrWhiteSpace(donation.Phone))
+      {
+        errorMessages.Add("Phone number must be specified");
+      }
+
+      return errorMessages;
+    }
+
+    private bool IsValidIdNumber(IdType type, string number)
+    {
+      //Todo: Implement algorithm to check validity
+      return true;
     }
   }
 }
