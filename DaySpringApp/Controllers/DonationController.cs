@@ -75,7 +75,7 @@ namespace DaySpringApp.Controllers
 
     private bool IsValidIdNumber(IdType type, string number)
     {
-      if (number.Length > 12) return false;
+      if (number == null || number.Length > 12) return false;
       //Todo: Implement algorithm to check validity
       return true;
     }
