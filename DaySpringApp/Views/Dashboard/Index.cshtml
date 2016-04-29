@@ -5,7 +5,7 @@
     google.charts.setOnLoadCallback(drawDonationByYearChart);
     google.charts.setOnLoadCallback(drawDonationTargetVsActualChart);
     function drawDonationByYearChart() {
-        $.get("http://172.22.119.132:8080/api/analysis/donations/?year=2015", "", function (response) {
+        $.get("http://172.22.119.132:8080/api/analysis/donations?year=2015", "", function (response) {
             var models = response;
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Month');
@@ -29,7 +29,7 @@
     };
 
     function drawDonationTargetVsActualChart() {
-        $.get("http://172.22.119.132:8080/api/analysis/donations/target/?year=2015", "", function (response) {
+        $.get("http://172.22.119.132:8080/api/analysis/donations/target?year=2015", "", function (response) {
             var models = response;
 
             var data = google.visualization.arrayToDataTable(models);

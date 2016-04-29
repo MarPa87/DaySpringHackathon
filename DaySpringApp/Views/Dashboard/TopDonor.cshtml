@@ -1,13 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Query The Inactive Donor";
+    ViewBag.Title = "Top Donor";
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnDownload").on("click", function (e) {
-            var numMonths = $("#cbxNumMonths").val();
-            if (numMonths) {
-                $.get("http://172.22.119.132:8080/api/analysis/donors/inactive?unit=months&value=" + numMonths, "", function (response) {
+        $("btnDownload").on("click", function (e) {
+            var year = $("cbxYear").val();
+            var topN = $("#cbxTopN").val();
+            if (year && numMonths) {
+                $.ajax("http://172.22.119.132:8080/api/analysis/donors/top?year=" + year + "&num=" + topN, function (response) {
                     var rows = "";
                     for (var i = 0; i < response.length; i++) {
                         rows += "<tr>" +
@@ -18,10 +19,10 @@
                                 "</tr>";
                     }
 
-                    $("#inactiveDonorContent").html(
+                    $("#inactiveDonationContent").append(
                         "<table class='table table-striped grid-table'>" +
-                        "<thead>" + 
-                            "<tr>" + 
+                        "<thead>" +
+                            "<tr>" +
                                 "<th>Full Name</th>" +
                                 "<th>NRIC</th>" +
                                 "<th>Email Address</th>" +
@@ -43,12 +44,19 @@
     This section allows you to query the inactive donor.
 </p>
 <div class="form-group">
-    <label for="cbxYear">Inactive for how many month(s)</label>
-    <select class="form-control" name="numMonths" id="cbxNumMonths">
-        @for (var i = 3; i <= 36; i += 3)
-        {
-            <option>@i</option>
-        }
+    <label for="cbxYear">Year</label>
+    <select class="form-control" name="year" id="cbxYear">
+        <option>2015</option>
+        <option>2014</option>
+        <option>2013</option>
+        <option>2012</option>
+    </select>
+    <label for="cbxYear">Top?</label>
+    <select class="form-control" name="topN" id="cbxTopN">
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
     </select>
 </div>
 <button id="btnDownload" type="submit" class="btn btn-default">Download</button>
