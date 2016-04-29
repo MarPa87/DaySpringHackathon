@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using DaySpringApp.Abstracts;
 using DaySpringApp.DataLayer;
-using DaySpringApp.Repositories;
 
 namespace DaySpringApp.Controllers
 {
@@ -20,7 +19,7 @@ namespace DaySpringApp.Controllers
       _donationRepository = donationRepository;
     }
 
-    public HttpResponseMessage Get(int year, int month = 0)
+    public HttpResponseMessage Get(int year = 0, int month = 0)
     {
       var donations = _donationRepository.GetDonations(year, month);
       return Request.CreateResponse(HttpStatusCode.OK, donations);
@@ -29,6 +28,8 @@ namespace DaySpringApp.Controllers
     public HttpResponseMessage Post(Donation donation)
     {
       _donationRepository.AddDonation(donation);
+      donation.DonationDate = DateTime.Now;
+      donation.ReceiptNumber = GetReceiptNumber();
       var validationError = ValidateDonation(donation);
       return validationError.Any()
         ? Request.CreateResponse(HttpStatusCode.BadRequest, validationError)
@@ -74,9 +75,14 @@ namespace DaySpringApp.Controllers
 
     private bool IsValidIdNumber(IdType type, string number)
     {
-      if (number.Length > 12) return false;
+      if (number == null || number.Length > 12) return false;
       //Todo: Implement algorithm to check validity
       return true;
+    }
+
+    private string GetReceiptNumber()
+    {
+      return $"REC124235{new Random().Next(100, 999)}";
     }
   }
 }

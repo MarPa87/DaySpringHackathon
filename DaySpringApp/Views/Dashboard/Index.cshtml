@@ -5,71 +5,53 @@
     google.charts.setOnLoadCallback(drawDonationByYearChart);
     google.charts.setOnLoadCallback(drawDonationTargetVsActualChart);
     function drawDonationByYearChart() {
-        var models =
-            [
-                {
-                    MonthName: 'Jan',
-                    Total: 50000
-                },
-                {
-                    MonthName: 'Feb',
-                    Total: 65000
-                },
-                {
-                    MonthName: 'Mar',
-                    Total: 45000
-                }
-            ];
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Month');
-        data.addColumn('number', 'Donation');
+        $.get("http://172.22.119.132:8080/api/analysis/donations?year=2015", "", function (response) {
+            var models = response;
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Month');
+            data.addColumn('number', 'Donation');
 
-        var dataset = new Array(models.length);
-        for (var i = 0; i < models.length; i++) {
-            dataset[i] = [models[i].MonthName, models[i].Total];
-        }
+            var dataset = new Array(models.length);
+            for (var i = 0; i < models.length; i++) {
+                dataset[i] = [models[i].MonthName, models[i].Total];
+            }
 
-        data.addRows(dataset);
+            data.addRows(dataset);
 
-        var options = {
-            //width: 600,
-            //height: 400,
-            legend: { position: 'none' },
-            //bar: { groupWidth: '75%' },
-            isStacked: true
-        };
+            var options = {
+                legend: { position: 'none' },
+                isStacked: true
+            };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById("donationByYearChart"));
-        chart.draw(data, options);
+            var chart = new google.visualization.ColumnChart(document.getElementById("donationByYearChart"));
+            chart.draw(data, options);
+        });
     };
 
     function drawDonationTargetVsActualChart() {
-        var models =
-            [
-                ['Caption', "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                ['Target', 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000],
-                ['Actual', 50000, 65000, 45000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ];
+        $.get("http://172.22.119.132:8080/api/analysis/donations/target?year=2015", "", function (response) {
+            var models = response;
 
-        var data = google.visualization.arrayToDataTable(models);
+            var data = google.visualization.arrayToDataTable(models);
 
-        var options = {
-            legend: { position: 'none' },
-            isStacked: 'percent'
-        };
+            var options = {
+                legend: { position: 'none' },
+                isStacked: 'true'
+            };
 
-        var chart = new google.visualization.BarChart(document.getElementById("donationTargetVsActualChart"));
-        chart.draw(data, options);
+            var chart = new google.visualization.BarChart(document.getElementById("donationTargetVsActualChart"));
+            chart.draw(data, options);
+        });
     };
 </script>
 <div>
-    <h2>Donation in @DateTime.Today.Year</h2>
+    <h2>Donation in 2015</h2>
     <p>
         <div id="donationByYearChart"></div>
     </p>
 </div>
 <div>
-    <h2>Donation Target Vs Actual in @DateTime.Today.Year</h2>
+    <h2>Donation Target Vs Actual in 2015</h2>
     <p>
         <div id="donationTargetVsActualChart"></div>
     </p>

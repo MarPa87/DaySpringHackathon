@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Query The Inactive Donor";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnDownload").on("click", function (e) {
+            var numMonths = $("#cbxNumMonths").val();
+            if (numMonths) {
+                $.get("http://172.22.119.132:8080/api/analysis/donors/inactive?unit=months&value=" + numMonths, "", function (response) {
+                    var rows = "";
+                    for (var i = 0; i < response.length; i++) {
+                        rows += "<tr>" +
+                                    "<td>" + response[i].FirstName + " " + response[i].LastName + "</td>" +
+                                    "<td>" + response[i].IdNumber + "</td>" +
+                                    "<td>" + response[i].Email + "</td>" +
+                                    "<td>" + response[i].Phone + "</td>" +
+                                    "<td>" + response[i].LastDonationDate.toString('dd-MMM-yyyy') + "</td>" +
+                                "</tr>";
+                    }
+
+                    $("#inactiveDonorContent").html(
+                        "<table class='table table-striped grid-table'>" +
+                        "<thead>" + 
+                            "<tr>" + 
+                                "<th>Full Name</th>" +
+                                "<th>NRIC</th>" +
+                                "<th>Email Address</th>" +
+                                "<th>Contact No.</th>" +
+                                "<th>Last Donation Date</th>" +
+                            "</tr>" +
+                        "</thead>" +
+                        "<tbody>" +
+                        rows +
+                        "</tbody>" +
+                        "</table>"
+                    );
+                });
+            }
+        });
+    });
+</script>
+<h2>Query the Inactive Donor</h2>
+<p>
+    This section allows you to query the inactive donor.
+</p>
+<div class="form-group">
+    <label for="cbxYear">Inactive for how many month(s)</label>
+    <select class="form-control" name="numMonths" id="cbxNumMonths">
+        @for (var i = 3; i <= 36; i += 3)
+        {
+            <option>@i</option>
+        }
+    </select>
+</div>
+<button id="btnDownload" type="submit" class="btn btn-default">Download</button>
+<div id="inactiveDonorContent">
+</div>

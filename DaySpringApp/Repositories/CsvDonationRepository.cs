@@ -23,9 +23,10 @@ namespace DaySpringApp.Repositories
       _donationData = JsonConvert.DeserializeObject<List<Donation>>(content);
     }
     
-    public IEnumerable<Donation> GetDonations(int year, int month = 0)
+    public IEnumerable<Donation> GetDonations(int year = 0, int month = 0)
     {
-      return _donationData.Where(c => c.DonationDate.Year == year && (month == 0 || c.DonationDate.Month == month));
+      if (year == 0) month = 0;
+      return _donationData.Where(c => (year == 0 || c.DonationDate.Year == year) && (month == 0 || c.DonationDate.Month == month));
     }
 
     public void AddDonation(Donation donationData)
@@ -37,6 +38,12 @@ namespace DaySpringApp.Repositories
     public void BulkAddDonation(IEnumerable<Donation> donations)
     {
       _donationData.AddRange(donations);
+      SaveToFile();
+    }
+
+    public void ClearAll()
+    {
+      _donationData.Clear();
       SaveToFile();
     }
 

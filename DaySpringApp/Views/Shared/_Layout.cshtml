@@ -6,6 +6,11 @@
     <title>@ViewBag.Title - DaySpring</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/gridmvc")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("DaySpring", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("DaySpring Admin Centre", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -24,7 +29,16 @@
                 <a href="#page-top"></a>
               </li>
               <li class="page-scroll">
-                @Html.ActionLink("Reports", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Details", "Index", "Detail", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Inactive Donor", "InactiveDonor", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Top Donor", "TopDonor", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
               </li>
               <li class="page-scroll">
                 @Html.ActionLink("IRAS Export", "Index", "Iras", new { area = "" }, new { @class = "navbar-brand" })
@@ -40,10 +54,5 @@
             <p>&copy; @DateTime.Now.Year - DaySpring</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/gridmvc")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

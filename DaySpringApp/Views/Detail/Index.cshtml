@@ -1,0 +1,108 @@
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<DaySpringApp.DataLayer.Donation>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Index</title>
+</head>
+<body>
+
+  <div class="panel panel-default" style="margin-top: 20px">
+    <!-- Default panel contents -->
+    <div class="panel-heading">List of donations (@ViewBag.month / @ViewBag.year)</div>
+    <div class="panel-body">
+      <form method="get" action="@Url.Action("Index")" class="form-inline" role="form">
+        <div class="form-group">
+          <select class="form-control" name="year" id="cbxYear">
+            <option @Html.Raw(ViewBag.year == 2016 ? "selected='selected'" : "")>2016</option>
+            <option @Html.Raw(ViewBag.year == 2015 ? "selected='selected'" : "")>2015</option>
+            <option @Html.Raw(ViewBag.year == 2014 ? "selected='selected'" : "")>2014</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" name="month" id="cbxMonth">
+            <option value="1" @Html.Raw(ViewBag.month == 1 ? "selected='selected'" : "")>January</option>
+            <option value="2" @Html.Raw(ViewBag.month == 2 ? "selected='selected'" : "")>February</option>
+            <option value="3" @Html.Raw(ViewBag.month == 3 ? "selected='selected'" : "")>March</option>
+            <option value="4" @Html.Raw(ViewBag.month == 4 ? "selected='selected'" : "")>April</option>
+            <option value="5" @Html.Raw(ViewBag.month == 5 ? "selected='selected'" : "")>May</option>
+            <option value="6" @Html.Raw(ViewBag.month == 6 ? "selected='selected'" : "")>June</option>
+            <option value="7" @Html.Raw(ViewBag.month == 7 ? "selected='selected'" : "")>July</option>
+            <option value="8" @Html.Raw(ViewBag.month == 8 ? "selected='selected'" : "")>August</option>
+            <option value="9" @Html.Raw(ViewBag.month == 9 ? "selected='selected'" : "")>September</option>
+            <option value="10" @Html.Raw(ViewBag.month == 10 ? "selected='selected'" : "")>October</option>
+            <option value="11" @Html.Raw(ViewBag.month == 11 ? "selected='selected'" : "")>November</option>
+            <option value="12" @Html.Raw(ViewBag.month == 12 ? "selected='selected'" : "")>December</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+    <table class="table">
+      <tr>
+        <th>
+         ID
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+          Address
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.DonationAmount)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.DonationDate)
+        </th>
+        <th></th>
+      </tr>
+
+      @foreach (var item in Model.OrderByDescending(c => c.DonationDate))
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.IdNumber)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.LastName), @Html.DisplayFor(modelItem => item.FirstName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Email)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.AddressLine1)<br />
+            @Html.DisplayFor(modelItem => item.AddressLine2)<br />
+            @Html.DisplayFor(modelItem => item.AddressLine3)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+          </td>
+          <td>
+            @item.DonationAmount.ToString("C")
+          </td>
+          <td>
+            @item.DonationDate.ToString("d")
+          </td>
+        </tr>
+      }
+
+    </table>
+  </div>
+</body>
+</html>
