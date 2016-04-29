@@ -19,7 +19,12 @@ namespace DaySpringApp.Controllers
       if (donationRepository == null) throw new ArgumentNullException(nameof(donationRepository));
       _donationRepository = donationRepository;
     }
-    
+
+    public ActionResult Index()
+    {
+      return View();
+    }
+
     public ActionResult Export(int year)
     {
       var donations = _donationRepository

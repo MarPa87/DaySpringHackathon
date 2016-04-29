@@ -18,8 +18,19 @@
                 </button>
                 @Html.ActionLink("DaySpring", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-            </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="hidden active">
+                <a href="#page-top"></a>
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("Reports", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+              <li class="page-scroll">
+                @Html.ActionLink("IRAS Export", "Index", "Iras", new { area = "" }, new { @class = "navbar-brand" })
+              </li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="container body-content">
