@@ -32,7 +32,7 @@ namespace DaySpringApp.Controllers
           AddressLine1 = "Sims Ave. 1",
           AddressLine2 = "#12-34",
           AddressLine3 = "2nd floor",
-          DonationDate = new DateTime(rng.Next(2013,2015), rng.Next(1,12), rng.Next(1,28)),
+          DonationDate = new DateTime(rng.Next(2013,2016), rng.Next(1,13), rng.Next(1,28)),
           DonationAmount = rng.Next(5, 1000),
           Email = "lorem@ipsum.com",
           ReceiptNumber = $"REC{i}",
