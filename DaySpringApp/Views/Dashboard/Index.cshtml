@@ -5,7 +5,7 @@
     google.charts.setOnLoadCallback(drawDonationByYearChart);
     google.charts.setOnLoadCallback(drawDonationTargetVsActualChart);
     function drawDonationByYearChart() {
-        $.get("http://172.22.119.132:8080/api/analysis/donations/2015/", "", function (response) {
+        $.get("http://172.22.119.132:8080/api/analysis/donations/?year=2015", "", function (response) {
             var models = response;
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Month');
@@ -29,22 +29,24 @@
     };
 
     function drawDonationTargetVsActualChart() {
-        var models =
-            [
-                ['Caption', "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                ['Target', 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000],
-                ['Actual', 50000, 65000, 45000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ];
+        $.get("http://172.22.119.132:8080/api/analysis/donations/target/?year=2015", "", function (response) {
+            var models = response;
+                //[
+                //    ['Caption', "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                //    ['Target', 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000],
+                //    ['Actual', 50000, 65000, 45000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                //];
 
-        var data = google.visualization.arrayToDataTable(models);
+            var data = google.visualization.arrayToDataTable(models);
 
-        var options = {
-            legend: { position: 'none' },
-            isStacked: 'true'
-        };
+            var options = {
+                legend: { position: 'none' },
+                isStacked: 'true'
+            };
 
-        var chart = new google.visualization.BarChart(document.getElementById("donationTargetVsActualChart"));
-        chart.draw(data, options);
+            var chart = new google.visualization.BarChart(document.getElementById("donationTargetVsActualChart"));
+            chart.draw(data, options);
+        });
     };
 </script>
 <div>

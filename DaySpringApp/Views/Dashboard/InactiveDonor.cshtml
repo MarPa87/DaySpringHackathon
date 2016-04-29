@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Query The Inactive Donor";
+}
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("btnDownload").on("click", function (e) {
+            $.ajax("url", function (response) {
+                
+            });
+        });
+    });
+</script>*@
+<h2>Query the Inactive Donor</h2>
+<p>
+    This section allows you to query the inactive donor.
+</p>
+<div class="form-group">
+    <label for="cbxYear">Inactive for how many month(s)</label>
+    <select class="form-control" name="numMonths" id="cbxNumMonths">
+        @for (var i = 3; i <= 36; i += 3)
+        {
+            <option>@i</option>
+        }
+    </select>
+</div>
+<button id="btnDownload" type="submit" class="btn btn-default">Download</button>
+<div>
+    <div>
+        <table class="table table-striped grid-table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>NRIC</th>
+                    <th>Email Address</th>
+                    <th>Contact No.</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
