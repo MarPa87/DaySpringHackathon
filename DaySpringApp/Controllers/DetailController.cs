@@ -25,6 +25,8 @@ namespace DaySpringApp.Controllers
         year = DateTime.Now.Year;
         month = DateTime.Now.Month;
       }
+      ViewBag.Year = year;
+      ViewBag.Month = month;
       var donations = _donationRepository.GetDonations(year, month);
       return View(donations);
     }
