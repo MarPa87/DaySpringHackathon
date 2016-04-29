@@ -93,10 +93,10 @@
             @Html.DisplayFor(modelItem => item.PostalCode)
           </td>
           <td>
-            @Html.DisplayFor(modelItem => item.DonationAmount)
+            @item.DonationAmount.ToString("C")
           </td>
           <td>
-            @Html.DisplayFor(modelItem => item.DonationDate)
+            @item.DonationDate.ToString("d")
           </td>
         </tr>
       }
