@@ -238,6 +238,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CsvDonationRepository.cs" />
     <Compile Include="Repositories\MockDonationRepository.cs" />
     <Compile Include="Results\ZipResult.cs" />
     <Compile Include="Startup.cs" />

@@ -33,7 +33,7 @@ namespace DaySpringApp.DependencyResolution {
 					scan.With(new ControllerConvention());
                 });
             //For<IExample>().Use<Example>();
-          For<IDonationRepository>().Use<MockDonationRepository>();
+          For<IDonationRepository>().Use<CsvDonationRepository>();
         }
 
         #endregion
