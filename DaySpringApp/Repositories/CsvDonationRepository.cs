@@ -14,6 +14,11 @@ namespace DaySpringApp.Repositories
 
     public CsvDonationRepository()
     {
+      if (!System.IO.File.Exists(_donationFileName))
+      {
+        _donationData = new List<Donation>();
+        return;
+      }
       var content = System.IO.File.ReadAllText(_donationFileName);
       _donationData = JsonConvert.DeserializeObject<List<Donation>>(content);
     }
