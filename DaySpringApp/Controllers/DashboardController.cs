@@ -22,5 +22,10 @@ namespace DaySpringApp.Controllers
         {
             return View();
         }
+
+        public ActionResult TopDonor()
+        {
+            return View();
+        }
     }
 }
