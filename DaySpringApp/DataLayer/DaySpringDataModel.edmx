@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DaySpringDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationId" />
+          </Key>
+          <Property Name="DonationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DonationDate" Type="datetime" Nullable="false" />
+          <Property Name="DonationType" Type="tinyint" Nullable="false" />
+          <Property Name="DonorId" Type="int" Nullable="false" />
+          <Property Name="PaymentType" Type="tinyint" Nullable="false" />
+          <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Remarks" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="DonorId" />
+          </Key>
+          <Property Name="DonorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdentificationTypeId" Type="char" MaxLength="2" />
+          <Property Name="IdNo" Type="varchar" MaxLength="12" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="30" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="30" />
+          <Property Name="AddressLine3" Type="varchar" MaxLength="30" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="6" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="1000" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IdentificationType">
+          <Key>
+            <PropertyRef Name="IdentificationTypeId" />
+          </Key>
+          <Property Name="IdentificationTypeId" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Donation_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_Donor">
+          <End Role="Donor" Type="Self.Donor" Multiplicity="1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="DonorId" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="DonorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donor_IdentificationType">
+          <End Role="IdentificationType" Type="Self.IdentificationType" Multiplicity="0..1" />
+          <End Role="Donor" Type="Self.Donor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentificationType">
+              <PropertyRef Name="IdentificationTypeId" />
+            </Principal>
+            <Dependent Role="Donor">
+              <PropertyRef Name="IdentificationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DaySpringDbModelStoreContainer">
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donation" EntityType="Self.Donation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donor" EntityType="Self.Donor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Donation_Currency" Association="Self.FK_Donation_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_Donor" Association="Self.FK_Donation_Donor">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donor_IdentificationType" Association="Self.FK_Donor_IdentificationType">
+            <End Role="IdentificationType" EntitySet="IdentificationType" />
+            <End Role="Donor" EntitySet="Donor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DaySpringDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DaySpringDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Currencies" EntityType="DaySpringDbModel.Currency" />
+          <EntitySet Name="Donations" EntityType="DaySpringDbModel.Donation" />
+          <EntitySet Name="Donors" EntityType="DaySpringDbModel.Donor" />
+          <EntitySet Name="IdentificationTypes" EntityType="DaySpringDbModel.IdentificationType" />
+          <AssociationSet Name="FK_Donation_Currency" Association="DaySpringDbModel.FK_Donation_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_Donor" Association="DaySpringDbModel.FK_Donation_Donor">
+            <End Role="Donor" EntitySet="Donors" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donor_IdentificationType" Association="DaySpringDbModel.FK_Donor_IdentificationType">
+            <End Role="IdentificationType" EntitySet="IdentificationTypes" />
+            <End Role="Donor" EntitySet="Donors" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Donations" Relationship="DaySpringDbModel.FK_Donation_Currency" FromRole="Currency" ToRole="Donation" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationId" />
+          </Key>
+          <Property Name="DonationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DonationType" Type="Byte" Nullable="false" />
+          <Property Name="DonorId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentType" Type="Byte" Nullable="false" />
+          <Property Name="CurrencyId" Type="Byte" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Currency" Relationship="DaySpringDbModel.FK_Donation_Currency" FromRole="Donation" ToRole="Currency" />
+          <NavigationProperty Name="Donor" Relationship="DaySpringDbModel.FK_Donation_Donor" FromRole="Donation" ToRole="Donor" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="DonorId" />
+          </Key>
+          <Property Name="DonorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdentificationTypeId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="IdNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine3" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Donations" Relationship="DaySpringDbModel.FK_Donation_Donor" FromRole="Donor" ToRole="Donation" />
+          <NavigationProperty Name="IdentificationType" Relationship="DaySpringDbModel.FK_Donor_IdentificationType" FromRole="Donor" ToRole="IdentificationType" />
+        </EntityType>
+        <EntityType Name="IdentificationType">
+          <Key>
+            <PropertyRef Name="IdentificationTypeId" />
+          </Key>
+          <Property Name="IdentificationTypeId" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Donors" Relationship="DaySpringDbModel.FK_Donor_IdentificationType" FromRole="IdentificationType" ToRole="Donor" />
+        </EntityType>
+        <Association Name="FK_Donation_Currency">
+          <End Type="DaySpringDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="DaySpringDbModel.Donation" Role="Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_Donor">
+          <End Type="DaySpringDbModel.Donor" Role="Donor" Multiplicity="1" />
+          <End Type="DaySpringDbModel.Donation" Role="Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="DonorId" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="DonorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donor_IdentificationType">
+          <End Type="DaySpringDbModel.IdentificationType" Role="IdentificationType" Multiplicity="0..1" />
+          <End Type="DaySpringDbModel.Donor" Role="Donor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentificationType">
+              <PropertyRef Name="IdentificationTypeId" />
+            </Principal>
+            <Dependent Role="Donor">
+              <PropertyRef Name="IdentificationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DaySpringDbModelStoreContainer" CdmEntityContainer="DaySpringDbEntities">
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="DaySpringDbModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="DaySpringDbModel.Donation">
+              <MappingFragment StoreEntitySet="Donation">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+                <ScalarProperty Name="DonationType" ColumnName="DonationType" />
+                <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+                <ScalarProperty Name="DonationId" ColumnName="DonationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donors">
+            <EntityTypeMapping TypeName="DaySpringDbModel.Donor">
+              <MappingFragment StoreEntitySet="Donor">
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdNo" ColumnName="IdNo" />
+                <ScalarProperty Name="IdentificationTypeId" ColumnName="IdentificationTypeId" />
+                <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentificationTypes">
+            <EntityTypeMapping TypeName="DaySpringDbModel.IdentificationType">
+              <MappingFragment StoreEntitySet="IdentificationType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdentificationTypeId" ColumnName="IdentificationTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

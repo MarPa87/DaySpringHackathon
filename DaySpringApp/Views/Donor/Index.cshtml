@@ -1,0 +1,37 @@
+﻿@using GridMvc.Html
+@model IQueryable<DaySpringApp.DataLayer.Donor>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Donor List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(m => m.IdentificationTypeId)
+           .RenderValueAs(m => m.IdentificationTypeFormatted)
+           .Titled("Id Type");
+    columns.Add(m => m.IdNo)
+           .Titled("Id No");
+    columns.Add(m => m.FirstName)
+           .Titled("First Name");
+    columns.Add(m => m.AddressLine1)
+           .Titled("Address Line 1");
+    columns.Add(m => m.AddressLine2)
+           .Titled("Address Line 2");
+    columns.Add(m => m.AddressLine3)
+           .Titled("Address Line 3");
+    columns.Add(m => m.EmailAddress)
+           .Titled("Email Address");
+    columns.Add(m => m.ContactNo)
+           .Titled("Contact No");
+    columns.Add()
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(m => @Html.ActionLink("Edit", "Edit", new { id = m.DonorId }).ToHtmlString() + "|" +
+                               @Html.ActionLink("Details", "Details", new { id = m.DonorId }).ToHtmlString() + "|" +
+                               @Html.ActionLink("Delete", "Delete", new { id = m.DonorId }).ToHtmlString());
+}).WithPaging(10).Filterable().Sortable().WithMultipleFilters()

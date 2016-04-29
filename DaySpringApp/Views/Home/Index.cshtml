@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Dashboard</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Donation in 2015</h2>
+        <p>
+            @Html.Action("DonationByYear", "Dashboard", new { Year = 2015 })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Chart 2</h2>
+        <p></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Chart 3</h2>
+        <p></p>
+    </div>
+</div>
