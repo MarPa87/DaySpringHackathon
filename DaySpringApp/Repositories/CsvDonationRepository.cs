@@ -23,7 +23,7 @@ namespace DaySpringApp.Repositories
       _donationData = JsonConvert.DeserializeObject<List<Donation>>(content);
     }
     
-    public IEnumerable<Donation> GetDonations(int year, int month = 0)
+    public IEnumerable<Donation> GetDonations(int year = 0, int month = 0)
     {
       if (year == 0) month = 0;
       return _donationData.Where(c => (year == 0 || c.DonationDate.Year == year) && (month == 0 || c.DonationDate.Month == month));
