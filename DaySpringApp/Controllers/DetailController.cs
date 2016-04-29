@@ -25,6 +25,8 @@ namespace DaySpringApp.Controllers
         year = DateTime.Now.Year;
         month = DateTime.Now.Month;
       }
+
+      if (year == DateTime.Now.Year && month > DateTime.Now.Month) month = DateTime.Now.Month;
       ViewBag.Year = year;
       ViewBag.Month = month;
       var donations = _donationRepository.GetDonations(year, month);
@@ -50,28 +52,6 @@ namespace DaySpringApp.Controllers
       try
       {
         // TODO: Add update logic here
-
-        return RedirectToAction("Index");
-      }
-      catch
-      {
-        return View();
-      }
-    }
-
-    // GET: Detail/Delete/5
-    public ActionResult Delete(int id)
-    {
-      return View();
-    }
-
-    // POST: Detail/Delete/5
-    [HttpPost]
-    public ActionResult Delete(int id, FormCollection collection)
-    {
-      try
-      {
-        // TODO: Add delete logic here
 
         return RedirectToAction("Index");
       }
