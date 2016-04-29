@@ -35,5 +35,9 @@ namespace DaySpringApp.Repositories
     {
       
     }
+
+    public void BulkAddDonation(IEnumerable<Donation> donations)
+    {
+    }
   }
 }

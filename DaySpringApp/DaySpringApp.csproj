@@ -212,6 +212,7 @@
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IrasController.cs" />
+    <Compile Include="Controllers\MockDataController.cs" />
     <Compile Include="DataLayer\Donation.cs" />
     <Compile Include="DataLayer\IdType.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
