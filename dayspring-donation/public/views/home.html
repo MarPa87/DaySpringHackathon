@@ -102,7 +102,7 @@
 							<p>Thank you for your generous contribution.</p>
 
 							<form name="donateForm" ng-submit="submitDonate()">
-								<div class="form-group ui-validation-show-errors">
+								<div class="form-group">
 									<label class="block">Do you need Tax Relief?</label>
 									<label class="radio-inline">
 									  	<input type="radio" ng-model="taxReliefOptions" name="taxReliefOptions" id="noTaxRelief" value="noTaxRelief" ng-change='changeTaxRelief(taxReliefOptions)' checked /> Non Tax Relief
@@ -125,7 +125,7 @@
 								</div>
 								<div class="form-group required" ng-show="showTaxRelief">
 								    <label for="idType">ID Type</label>
-							    	<select class="form-control" name="idType" ng-model="idType">
+							    	<select class="form-control" name="idType" ng-model="model.idType">
 										<option value="1">NRIC</option>
 										<option value="2">FIN (Foreign Identification Number)</option>
 										<option value="5">UEN-Business (Business Registration Number)</option>
@@ -136,8 +136,8 @@
 									</select>
 							 	</div>
 							  	<div class="form-group required" ng-show="showTaxRelief">
-								    <label for="idNumber">{{parseIdType(idType)}}</label>
-							    	<input type="text" ng-model="model.idNumber" class="form-control" id="idNumber" placeholder="{{parseIdType(idType)}}" name="idNumber" />
+								    <label for="idNumber">{{parseIdType(model.idType)}}</label>
+							    	<input type="text" ng-model="model.idNumber" class="form-control" id="idNumber" placeholder="{{parseIdType(model.idType)}}" name="idNumber" />
 							 	</div>
 							 	<div class="form-group required" ng-show="showTaxRelief">
 							    	<label for="contactNumber">Contact Number</label>
@@ -181,6 +181,10 @@
 							            on-create="setWidgetId('verificationRecaptcha')"
 							            on-success="handleResponse(response)"
 							        ></div>
+							  	</div>
+
+							  	<div class="form-group" ng-show="showError">
+							  		<p class="error-backend" ng-bind-html="errorMsg"></p>
 							  	</div>
 							  
 							  <button type="submit" class="btn btn-default">Donate!</button>
