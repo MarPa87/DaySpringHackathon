@@ -30,11 +30,13 @@ namespace DaySpringApp.Controllers
     {
       donation.DonationDate = DateTime.Now.Date;
       donation.ReceiptNumber = GetReceiptNumber();
-      _donationRepository.AddDonation(donation);
       var validationError = ValidateDonation(donation);
-      return validationError.Any()
-        ? Request.CreateResponse(HttpStatusCode.BadRequest, validationError)
-        : Request.CreateResponse(HttpStatusCode.Created);
+      if (validationError.Any())
+      {
+        return Request.CreateResponse(HttpStatusCode.BadRequest, validationError);
+      }
+      _donationRepository.AddDonation(donation);
+      return Request.CreateResponse(HttpStatusCode.Created);
     }
 
     /// <summary>
