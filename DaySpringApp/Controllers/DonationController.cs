@@ -26,9 +26,8 @@ namespace DaySpringApp.Controllers
       return Request.CreateResponse(HttpStatusCode.OK, donations);
     }
 
-    public HttpResponseMessage Post(string donationData)
+    public HttpResponseMessage Post(Donation donation)
     {
-      var donation = JsonConvert.DeserializeObject<Donation>(donationData);
       donation.DonationDate = DateTime.Now;
       donation.ReceiptNumber = GetReceiptNumber();
       _donationRepository.AddDonation(donation);
