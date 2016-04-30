@@ -28,7 +28,7 @@ namespace DaySpringApp.Controllers
 
     public HttpResponseMessage Post(Donation donation)
     {
-      donation.DonationDate = DateTime.Now;
+      donation.DonationDate = DateTime.Now.Date;
       donation.ReceiptNumber = GetReceiptNumber();
       _donationRepository.AddDonation(donation);
       var validationError = ValidateDonation(donation);
