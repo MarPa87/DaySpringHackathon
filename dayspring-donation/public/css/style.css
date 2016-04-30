@@ -6851,7 +6851,7 @@ body {
   padding: 50px 0;
 }
 .donate-form .tab-wrapper .tab-pane {
-  padding: 20px;
+  padding: 50px 20px;
 }
 .donate-form .tab-wrapper .nav-tabs.nav-justified > div {
   display: table-cell;
@@ -6880,6 +6880,11 @@ body {
   background: #e74c3c;
   color: #ecf0f1;
   border: 1px solid #e74c3c;
+}
+@media (max-width: 767px) {
+  .donate-form .tab-wrapper .nav-item a {
+    margin: 0;
+  }
 }
 .donate-form .tab-wrapper .nav-item.active a {
   background: #e74c3c;
@@ -6910,6 +6915,31 @@ body {
   padding: 20px;
   background: #e74c3c;
   color: #ecf0f1;
+}
+.donate-form .btn-donate-submit {
+  background-color: #e74c3c;
+  border: none;
+  color: #ecf0f1;
+  margin: 20px 0;
+}
+.donate-form .btn-donate-submit:hover {
+  background-color: #e43725;
+}
+p.donate-success {
+  padding: 20px;
+  background-color: #27ae60;
+  color: #ecf0f1;
+  font-size: 24px;
+}
+.integrity {
+  background-color: #ecf0f1;
+  padding: 50px 0;
+}
+.integrity h2 {
+  color: #e74c3c;
+}
+.integrity p {
+  color: #333333;
 }
 .checkNRIC-body {
   background-color: #f39c12;

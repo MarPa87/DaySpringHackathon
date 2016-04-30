@@ -101,7 +101,7 @@
 
 							<p>Thank you for your generous contribution.</p>
 
-							<form name="donateForm" ng-submit="submitDonate()">
+							<form name="donateForm" ng-submit="submitDonate()" ng-hide="successDonation">
 								<div class="form-group">
 									<label class="block">Do you need Tax Relief?</label>
 									<label class="radio-inline">
@@ -173,7 +173,7 @@
 							    	<input type="text" class="form-control" id="remarks" ng-model="model.remarks" placeholder="Remarks (to designate to specific programme)" name="remarks" />
 							  	</div>
 
-							  	<div class="form-group">
+							  	<!--<div class="form-group">
 							    	<p>Please confirm that you are a human and not an automated robot by checking the box and following any instructions below.</p>
 							    	<div
 							            vc-recaptcha
@@ -181,20 +181,82 @@
 							            on-create="setWidgetId('verificationRecaptcha')"
 							            on-success="handleResponse(response)"
 							        ></div>
-							  	</div>
+							  	</div>-->
 
 							  	<div class="form-group" ng-show="showError">
 							  		<p class="error-backend" ng-bind-html="errorMsg"></p>
 							  	</div>
 							  
-							  <button type="submit" class="btn btn-default">Donate!</button>
+							  <button type="submit" class="btn btn-default btn-donate-submit btn-lg">Donate!</button>
 							</form>
+
+							<p class="donate-success" ng-bind-html="successMsg" ng-show="successDonation"></p>
 						</div>
 					</div>
 			    </tab>
-			    <tab index="1" heading="Cheque &amp; GIRO">Cheque &amp; GIRO</tab>
-			    <tab index="2" heading="Internet Banking">Internet Banking</tab>
+			    <tab index="1" heading="Cheque &amp; GIRO">
+			    	<div class="row">
+			    		<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12 text-center">
+					    	<p>Payable to "HCSA DaySpring"</p>
+
+							<p>Please provide the following details with your cheque donation:
+								<ul class="list-unstyled">
+									<li>NRIC Name</li>
+									<li>NRIC Number</li>
+									<li>Contact Number</li>
+									<li>Mailing Address</li>
+								</ul>
+							</p>
+
+							<p>Please send your cheque donations to:
+								<ul class="list-unstyled">
+									<li>DaySpring</li>
+									<li>234 Turf Club Road</li>
+									<li>Singapore 287984</li>
+								</ul>
+							</p>
+						</div>
+					</div>
+			    </tab>
+			    <tab index="2" heading="Internet Banking">
+			    	<div class="row">
+			    		<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12 text-center">
+					    	<ul class="list-unstyled">
+					    		<li>Bank Name: OCBC Bank</li>
+								<li>Account No: 641-008602-001</li>
+								<li>Account Name: HCSA DaySpring</li>
+								<li>Branch Code: 641</li>
+								<li>Bank Code: 7339</li>
+								<li>Swift Code: OCBCSGSG</li>
+							</ul>
+						</div>
+					</div>
+			    </tab>
 		 	</tabset>
 		 </div>
+	</div>
+</div>
+
+<div class="integrity">
+	<div class="container">
+		<div class="row">
+			<h2>Financial Integrity</h2>
+			<p>
+				HighPoint Community Services Association (HCSA) is a non-profit social welfare organization registered under the Registrar of Societies and a member of the National Council of Social Services.
+			</p>
+			<p>
+			Our finances are carefully audited and the audited accounts are available on request. There are very stringent financial controls in place. These are supervised and overseen by the HCSA Board Members.</p>
+
+			<p>
+			HCSA is committed to ensure that every donated dollar is carefully spent in a strategic and effective way to ensure that lives are rebuilt and transformed with minimal administrative and overhead costs.</p>
+
+			<h2>Highpoint Community Services Association</h2>
+			<h4>View Accounts</h4>
+			<ul class="list-unstyled">
+				<li>31st December 2014 Download PDF (1.7 MB)</li>
+				<li>31st December 2013 Download PDF (1.5 MB)</li>
+				<li>31st December 2012 Download PDF (6 MB)</li>
+			</ul>
+		</div>
 	</div>
 </div>

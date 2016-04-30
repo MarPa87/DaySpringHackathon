@@ -10,7 +10,9 @@ sans-serif;
 @daySpringRed: #e74c3c;
 @daySpringHeaderBg: #e67e22;
 @daySpringHeader: #ecf0f1;
+@daySpringYellow: #f1c40f;
 @daySpringText: #333333;
+@daySpringGreen: #27ae60;
 @turquoiseGreen: #2dc4b0;
 @salmonPink: #e96c4f;
 @darkPink: #F555A0;
@@ -135,7 +137,7 @@ body {
         padding: 50px 0;
 
         .tab-pane {
-            padding: 20px;
+            padding: 50px 20px;
         }
 
         .nav-tabs.nav-justified > div {
@@ -168,6 +170,10 @@ body {
                     background: @daySpringRed;
                     color: @daySpringHeader;
                     border: 1px solid @daySpringRed;
+                }
+
+                @media (max-width: @screen-xs-max) {
+                    margin: 0;
                 }
             }
 
@@ -214,6 +220,37 @@ body {
         padding: 20px;
         background: @daySpringRed;
         color: @daySpringHeader;
+    }
+
+    .btn-donate-submit {
+        background-color: @daySpringRed;
+        border: none;
+        color: @daySpringHeader;
+        margin: 20px 0;
+
+        &:hover {
+            background-color: darken(@daySpringRed, 5%);
+        }
+    }
+}
+
+p.donate-success {
+    padding: 20px;
+    background-color: @daySpringGreen;
+    color: @daySpringHeader;
+    font-size: 24px;
+}
+
+.integrity {
+    background-color: #ecf0f1;
+    padding: 50px 0;
+
+    h2 {
+        color: @daySpringRed;
+    }
+
+    p {
+        color: @daySpringText;
     }
 }
 

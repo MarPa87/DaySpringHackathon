@@ -22,9 +22,11 @@ angular.module('MainCtrl', ['ui.bootstrap', 'countTo', 'ui.bootstrap.validation'
     $scope.countFrom = 0;
     $scope.showTaxRelief = false;
     $scope.showError = false;
+    $scope.successDonation = false;
 
     $scope.taxReliefOptions = "noTaxRelief";
     $scope.model.idType = "1";
+    $scope.model.currency = "SGD";
   
     $timeout(function(){
         $scope.dynamic = amt;
@@ -97,6 +99,9 @@ angular.module('MainCtrl', ['ui.bootstrap', 'countTo', 'ui.bootstrap.validation'
         .success(function(res) {
             console.log(res);
             $scope.showError = false;
+            $scope.successDonation = true;
+            $scope.successMsg = "Thank you for your donation of ";
+            $scope.successMsg += "S$" + $scope.model.donationAmt + "!";
         })
         .error(function(res) {
             console.log("error");
