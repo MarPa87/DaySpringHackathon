@@ -309,6 +309,7 @@
     <Content Include="Views\Detail\Index.cshtml" />
     <Content Include="Views\Dashboard\InactiveDonor.cshtml" />
     <Content Include="Views\Dashboard\TopDonor.cshtml" />
+    <Content Include="Views\Guest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

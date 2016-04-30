@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using DaySpringApp.Abstracts;
 using DaySpringApp.DataLayer;
+using Newtonsoft.Json;
 
 namespace DaySpringApp.Controllers
 {
@@ -25,11 +26,12 @@ namespace DaySpringApp.Controllers
       return Request.CreateResponse(HttpStatusCode.OK, donations);
     }
 
-    public HttpResponseMessage Post(Donation donation)
+    public HttpResponseMessage Post(string donationData)
     {
-      _donationRepository.AddDonation(donation);
+      var donation = JsonConvert.DeserializeObject<Donation>(donationData);
       donation.DonationDate = DateTime.Now;
       donation.ReceiptNumber = GetReceiptNumber();
+      _donationRepository.AddDonation(donation);
       var validationError = ValidateDonation(donation);
       return validationError.Any()
         ? Request.CreateResponse(HttpStatusCode.BadRequest, validationError)
