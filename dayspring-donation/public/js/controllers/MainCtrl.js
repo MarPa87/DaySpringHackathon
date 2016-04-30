@@ -21,9 +21,10 @@ angular.module('MainCtrl', ['ui.bootstrap', 'countTo', 'ui.bootstrap.validation'
     $scope.countTo = amt;
     $scope.countFrom = 0;
     $scope.showTaxRelief = false;
+    $scope.showError = false;
 
     $scope.taxReliefOptions = "noTaxRelief";
-    $scope.idType = "1";
+    $scope.model.idType = "1";
   
     $timeout(function(){
         $scope.dynamic = amt;
@@ -61,12 +62,12 @@ angular.module('MainCtrl', ['ui.bootstrap', 'countTo', 'ui.bootstrap.validation'
 
     $scope.submitDonate = function() {
         var postObj = {
-            "IdType": parseInt($scope.idType),
+            "IdType": parseInt($scope.model.idType),
             "IdNumber": $scope.model.idNumber,
             "FirstName": $scope.model.firstName,
             "LastName": $scope.model.lastName,
             "Email": $scope.model.email,
-            "Phone": $scope.model.phoneNumber,
+            "Phone": $scope.model.contactNumber,
             "AddressLine1": $scope.model.add1,
             "AddressLine2": $scope.model.add2,
             "AddressLine3": $scope.model.add3,
@@ -87,17 +88,22 @@ angular.module('MainCtrl', ['ui.bootstrap', 'countTo', 'ui.bootstrap.validation'
         $http({
             url: "http://172.22.117.244/api/donation",
             method: "POST",
-            data: postObj,
+            data: $.param(postObj),
+            dataType: 'json',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
         })
         .success(function(res) {
             console.log(res);
+            $scope.showError = false;
         })
         .error(function(res) {
             console.log("error");
             console.log(res);
+            $scope.showError = true;
+            $scope.errorMsg = "Please fix the following errors in your input:<br /><br />";
+            $scope.errorMsg += res.join("<br />");
         });
     };
 
